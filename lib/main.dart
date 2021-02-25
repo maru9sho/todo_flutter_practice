@@ -40,19 +40,23 @@ class MainPage extends StatelessWidget {
                 ),
               ).toList(),
             );
-          }),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () async{
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddPage(),
-                  fullscreenDialog: true,
-                ),
+          }),          
+          floatingActionButton:
+              Consumer<MainModel>(builder: (context, model,child)  {
+              return FloatingActionButton(
+                onPressed: () async{
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddPage(model),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                },
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
               );
-            },
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
+            }
           ),
         ),
       ),
