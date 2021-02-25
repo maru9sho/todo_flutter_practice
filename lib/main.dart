@@ -32,14 +32,20 @@ class MainPage extends StatelessWidget {
             title: Text('TODOアプリ'),
           ),
           body: Consumer<MainModel>(builder: (context, model,child) {
-            final todoList =model.todoList;
+            final todoList = model.todoList;
             return ListView(
               children: todoList.map(
-                    (todo) => ListTile(
-                  title:  Text(todo.title),
-                ),
+                    (todo) => CheckboxListTile(
+                      title: Text(todo.title),
+                      value: todo.isSelected,
+                      onChanged: (bool value) {
+                        todo.isSelected = !todo.isSelected;
+                        model.reload();
+                      },
+                    ),
               ).toList(),
             );
+
           }),          
           floatingActionButton:
               Consumer<MainModel>(builder: (context, model,child)  {

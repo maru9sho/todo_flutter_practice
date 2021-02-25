@@ -34,4 +34,9 @@ class MainModel extends ChangeNotifier {
          'createdAt': Timestamp.now(), // Stokes and Sons
       });
    }
+
+   void reload() {
+      notifyListeners();
+   }
+
 }

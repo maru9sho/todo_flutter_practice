@@ -11,4 +11,5 @@ class Todo{
 
   String title;
   DateTime createdAt;
+  bool isSelected = false;
 }
