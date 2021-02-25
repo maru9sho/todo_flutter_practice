@@ -39,4 +39,25 @@ class MainModel extends ChangeNotifier {
       notifyListeners();
    }
 
+   Future deleteCheckedLists() async {
+      final checkedLists = todoList.where((todo) => todo.isSelected).toList();
+      final references =
+         checkedLists.map((todo) => todo.documentReference).toList();
+
+      final batch = FirebaseFirestore.instance.batch();
+
+      references.forEach((reference) {
+         batch.delete(reference);
+      });
+
+      return batch.commit();
+      }
+
+
+      bool checkShoudActiveCompleteButton(){
+         final checkedLists = todoList.where((todo) => todo.isSelected).toList();
+         return checkedLists.length > 0;
+      }
+
 }
+
