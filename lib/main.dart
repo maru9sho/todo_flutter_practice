@@ -47,6 +47,7 @@ class MainPage extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => AddPage(),
+                  fullscreenDialog: true,
                 ),
               );
             },
